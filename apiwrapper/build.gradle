@@ -1,0 +1,75 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+android {
+    compileSdkVersion 27
+
+
+
+    defaultConfig {
+        minSdkVersion 22
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+archivesBaseName = "apiwrapper"
+version = "1.0"
+group = "coders"
+install {
+    repositories.mavenInstaller {
+        pom.project {
+            groupId "coders"
+            artifactId "apiwrapper"
+            version "1.0.0"
+        }
+    }
+}
+bintray {
+    user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
+    key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+    // jFrog plugin must be declared for this line to work
+    configurations = ['archives']
+    // Package info for BinTray
+    pkg {
+        repo = 'apiwrapper'
+        name = 'apiwrapper'
+        userOrg = user
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/bintray/gradle-bintray-plugin.git'
+        version {
+            name = '0.1'
+            desc = 'Api wrapper'
+            vcsTag = '1.0'
+        }
+    }
+}
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.github.kittinunf.fuel:fuel:1.15.0' //for JVM
+    implementation 'com.github.kittinunf.fuel:fuel-android:1.15.0' //for Android
+    implementation 'com.github.kittinunf.fuel:fuel-livedata:1.15.0' //for LiveData support
+    implementation 'com.github.kittinunf.fuel:fuel-rxjava:1.15.0' //for RxJava support
+    implementation 'com.github.kittinunf.fuel:fuel-gson:1.15.0' //for Gson support
+    implementation "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.3"
+    implementation 'com.github.kittinunf.fuel:fuel-moshi:1.15.0' //for Moshi support
+    implementation 'com.beust:klaxon:2.1.6'
+
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
