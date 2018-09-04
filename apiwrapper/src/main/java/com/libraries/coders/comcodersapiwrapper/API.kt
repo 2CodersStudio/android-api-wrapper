@@ -17,7 +17,7 @@ import com.google.gson.Gson
 
 typealias ParamItem = Pair<String, Any?>
 
-class API {
+public open class API {
 
 
     companion object {
