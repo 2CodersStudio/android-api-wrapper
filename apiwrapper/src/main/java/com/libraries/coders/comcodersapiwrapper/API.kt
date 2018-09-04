@@ -48,8 +48,8 @@ class API {
         }
 
         fun request(endPoint: String
-                    , onSuccess: (resultResponse: Result<String, FuelError>) -> Unit = {}
-                    , onFailure: (resultResponse: Result<String, FuelError>, context: Activity, retryAction: () -> Unit?, statusCode: Int) -> Unit
+                    , onSuccess: (resultResponse: String) -> Unit = {}
+                    , onFailure: (resultResponse: String, context: Activity, retryAction: () -> Unit?, statusCode: Int) -> Unit
                     , params: List<Pair<String, Any?>>? = null
                     , body: Any? = null
                     , showDialog: Boolean = false
@@ -69,10 +69,11 @@ class API {
                 when (result) {
 
                     is Result.Failure -> {
-                        onFailure(result, context, { request(endPoint, onSuccess, onFailure, params, body, showDialog, context, method) }, response.statusCode)
+                        onFailure(result.component1()
+                                ?: "", context, { request(endPoint, onSuccess, onFailure, params, body, showDialog, context, method) }, response.statusCode)
                     }
                     is Result.Success -> {
-                        manageSuccess(onSuccess, result, context)
+                        manageSuccess(onSuccess, result)
                     }
                 }
             }
@@ -81,8 +82,8 @@ class API {
         }
 
 
-        private fun manageSuccess(onSuccess: (resultResponse: Result<String, FuelError>) -> Unit, result: Result<String, FuelError>, context: Activity) {
-            onSuccess(result)
+        private fun manageSuccess(onSuccess: (resultResponse: String) -> Unit, result: Result<String, FuelError>) {
+            onSuccess(result.component1() ?: "")
         }
 
 
