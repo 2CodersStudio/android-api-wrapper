@@ -17,8 +17,10 @@ import com.google.gson.Gson
 
 typealias ParamItem = Pair<String, Any?>
 
-public open class API {
-
+class API {
+    enum class RequestMethod {
+        GET, POST, PUT, DELETE, PATCH
+    }
 
     companion object {
         var timeout = 30000
@@ -52,7 +54,7 @@ public open class API {
                     , body: Any? = null
                     , showDialog: Boolean = false
                     , context: Activity
-                    , method: Method) {
+                    , method: RequestMethod) {
 
             val request = when (method) {
                 Method.GET -> endPoint.httpGet(params).timeout(timeout).timeoutRead(timeout)
@@ -82,7 +84,6 @@ public open class API {
         private fun manageSuccess(onSuccess: (resultResponse: Result<String, FuelError>) -> Unit, result: Result<String, FuelError>, context: Activity) {
             onSuccess(result)
         }
-
 
 
     }
