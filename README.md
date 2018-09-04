@@ -1,6 +1,6 @@
 # Android API Wrapper
 
-[![Release](https://jitpack.io/v/User/Repo.svg)](https://jitpack.io/#2CodersStudio/android-api-wrapper)
+[![Release](https://jitpack.io/v/2CodersStudio/android-api-wrapper.svg)](https://jitpack.io/#2CodersStudio/android-api-wrapper)
 #### A little wrapper made to simplify the API setup on new projects
 This wrapper uses [Fuel](https://github.com/kittinunf/Fuel).
 
