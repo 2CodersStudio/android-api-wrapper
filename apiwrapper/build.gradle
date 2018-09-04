@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
-group = "org.bitbucket.2coders"
+group = "com.github.2codersstudio"
 android {
     compileSdkVersion 27
 
