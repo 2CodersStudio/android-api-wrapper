@@ -48,12 +48,10 @@ class API {
         }
 
         fun request(endPoint: String
-                    , onSuccess: (resultResponse: String) -> Unit = {}
-                    , onFailure: (resultResponse: String, context: Activity, retryAction: () -> Unit?, statusCode: Int) -> Unit
+                    , onSuccess: (resultResponse: String) -> Unit = { }
+                    , onFailure: (resultResponse: String, retryAction: () -> Unit?, statusCode: Int) -> Unit
                     , params: List<Pair<String, Any?>>? = null
                     , body: Any? = null
-                    , showDialog: Boolean = false
-                    , context: Activity
                     , method: RequestMethod) {
 
             val request = when (method) {
@@ -70,7 +68,7 @@ class API {
 
                     is Result.Failure -> {
                         onFailure(result.component1()
-                                ?: "", context, { request(endPoint, onSuccess, onFailure, params, body, showDialog, context, method) }, response.statusCode)
+                                ?: "", { request(endPoint, onSuccess, onFailure, params, body, method) }, response.statusCode)
                     }
                     is Result.Success -> {
                         manageSuccess(onSuccess, result)
