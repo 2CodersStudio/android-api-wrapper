@@ -1,11 +1,10 @@
 package com.libraries.coders.comcodersapiwrapper
 
-import android.app.Activity
 import android.util.Log
 
 
 /**
- * Created by Alvaro on 08/06/2018.
+ * Created by 2Coders on 08/06/2018.
  */
 
 import com.github.kittinunf.fuel.*

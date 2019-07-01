@@ -19,7 +19,7 @@ On your root build.gradle:
 Add the dependencies:
 ```
 	dependencies {
-	        implementation 'com.github.2CodersStudio:android-api-wrapper:1.3'
+	        implementation 'com.github.2CodersStudio:android-api-wrapper:1.6'
 	        implementation 'com.github.kittinunf.fuel:fuel:1.15.0'
             implementation 'com.github.kittinunf.fuel:fuel-android:1.15.0'
             implementation 'com.github.kittinunf.fuel:fuel-livedata:1.15.0'
