@@ -18,9 +18,6 @@ import org.json.JSONObject
 typealias ParamItem = Pair<String, Any?>
 
 class API {
-    enum class RequestMethod {
-        GET, POST, PUT, DELETE, PATCH
-    }
 
     companion object {
         var timeout = 30000
@@ -53,7 +50,7 @@ class API {
                     , params: List<Pair<String, Any?>>? = null
                     , body: Any? = null
                     , headers: Map<String, String>? = null
-                    , method: RequestMethod) {
+                    , method: Method) {
 
             val request = when (method) {
                 Method.GET -> endPoint.httpGet(params).header(headers).timeout(timeout).timeoutRead(timeout)
